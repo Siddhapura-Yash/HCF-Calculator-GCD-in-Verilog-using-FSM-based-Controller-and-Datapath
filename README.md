@@ -1,28 +1,23 @@
 # HCF (GCD) Calculator in Verilog
 
-This project implements a hardware-based solution for calculating the Highest Common Factor (HCF), also known as the Greatest Common Divisor (GCD), using Verilog. The design is split into a **datapath** and a **controller** based on a Finite State Machine (FSM).
+This project implements the Highest Common Factor (HCF), also known as the Greatest Common Divisor (GCD), using Verilog. The design is based on a **controller-datapath architecture**.
 
-## 🧩 Components
+## 🧩 Architecture Overview
 
-- **Datapath**: Handles register operations, MUX selection, subtraction, and comparison.
-- **Controller (FSM)**: Drives control signals based on states and input conditions.
-- **Testbench**: Validates the design using sample inputs.
+- **Datapath**: Includes registers, multiplexers, comparator, and subtractor. It performs the core arithmetic operations.
+- **Controller (FSM)**: A finite state machine that generates control signals to guide the datapath based on current conditions.
+- **Testbench**: Provides test inputs to verify the functionality of the overall design.
 
-## 🛠️ Modules Used
+## 📂 Project Structure
 
-- `DATA_PATH.v`
-- `CTRL_PATH.v`
-- `PIPO.v`
-- `MUX.v`
-- `CMP.v`
-- `SUB.v`
-- `testbench.v`
+- `DATA_PATH.v` – Datapath logic module
+- `CTRL_PATH.v` – FSM controller module
+- `PIPO.v` – Parallel-In Parallel-Out register
+- `MUX.v` – Multiplexer
+- `CMP.v` – Comparator
+- `SUB.v` – Subtractor
+- `testbench.v` – Verilog testbench for verification
 
-## 🔬 Simulation
+## 💡 Functionality
 
-Simulate using Icarus Verilog:
-
-```sh
-iverilog -o hcf.vvp *.v
-vvp hcf.vvp
-gtkwave dump.vcd
+The system loads two numbers and repeatedly subtracts the smaller from the larger until both values are equal, which is then the HCF.
